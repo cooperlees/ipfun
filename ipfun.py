@@ -16,7 +16,7 @@ def isIpInSubnet(ip: str, subnet: str, ipv6_host_mask: int = 64) -> bool:
 
 def ipToInt(ip: str) -> int:
     o = list(map(int, ip.split('.')))
-    return (2^24 * o[0]) + (2^16 * o[1]) + (2^8 * o[2]) + o[3]
+    return (2**24 * o[0]) + (2**16 * o[1]) + (2**8 * o[2]) + o[3]
 
 
 # TODO: IPv6 support
@@ -52,6 +52,7 @@ for method in (isIpInSubnet, isIpInSubnetManual):
     print(method("1.1.1.1", "1.1.1.0/25"))  # True
     print(method("255.1.1.1", "255.1.1.0/25"))  # True
     if method.__name__ == "isIpInSubnet":
+        print("-- IPv6:")
         print(method("69::69", "69::/64"))  # True
         print(method("69:a::69", "69::/64"))  # False
     print()
